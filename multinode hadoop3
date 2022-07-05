@@ -6,7 +6,7 @@ ssh -i Downloads/file.pem ubuntu@public_dns_address
 sudo apt-get update && sudo apt-get dist-upgrade -y
 
 # Copy public key on to the DataCenter main server
-scp -i multi.pem multi.pem ubuntu@public_dns:~/.ssh
+scp -i multinode.pem multinode.pem ubuntu@public_dns:~/.ssh
 
 # Create a Hadoop user for accessing HDFS
 sudo addgroup hadoop
@@ -21,7 +21,7 @@ cat id_rsa.pub >> authorized_keys
 # Copy the instance public key (multi.pem) to hduser's directory
 sudo su
 cp /home/ubuntu/.ssh/multi.pem /home/hduser/.ssh/
-chown hduser:hadoop /home/hduser/.ssh/multi.pem
+chown hduser:hadoop /home/hduser/.ssh/multinode.pem
 exit
 
 # Install Java 8 (Open-JDK)
@@ -31,9 +31,9 @@ java -version
 
 # Download and Install Hadoop
 
-wget -c https://downloads.apache.org/hadoop/common/stable/hadoop-3.3.2.tar.gz
-tar -xzvf hadoop-3.3.2.tar.gz
-sudo mv hadoop-3.3.2 /usr/local/hadoop
+wget -c https://downloads.apache.org/hadoop/common/stable/hadoop-3.3.3.tar.gz
+tar -xzvf hadoop-3.3.3.tar.gz
+sudo mv hadoop-3.3.3 /usr/local/hadoop
 sudo chown -R hduser:hadoop /usr/local/hadoop
 
 # Set Enviornment Variable
@@ -127,7 +127,7 @@ sudo service ssh restart
 
 # Configure .profile (make sure you are on NN) 
  nano .profile
- eval `ssh-agent` ssh-add /home/hduser/.ssh/abc.pem
+ eval `ssh-agent` ssh-add /home/hduser/.ssh/multinode.pem
 
  source .profile
 
