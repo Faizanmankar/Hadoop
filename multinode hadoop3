@@ -20,7 +20,7 @@ cat id_rsa.pub >> authorized_keys
 
 # Copy the instance public key (multi.pem) to hduser's directory
 sudo su
-cp /home/ubuntu/.ssh/multi.pem /home/hduser/.ssh/
+cp /home/ubuntu/.ssh/multinode.pem /home/hduser/.ssh/
 chown hduser:hadoop /home/hduser/.ssh/multinode.pem
 exit
 
