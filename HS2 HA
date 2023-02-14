@@ -1,0 +1,18 @@
+### Go to hive -> Instances -> add role instances -> hiveserver2
+start hiveserver2 instance
+
+
+### Enable dynamic service discovery 
+
+In hive -> configuration -> category -> advanced search -> hiveserver2 advanced configuration snippet 
+
+under "hiveserver2 advanced configuration snippet ( safety valve ) for hive-site.xml"
+Name : hive.server2.support.dynamic.service.discovery
+Value : true
+( leave final unchecked )
+
+
+### connect with beeline ###
+
+beeline 
+!connect jdbc:hive2://zookeeper chroot/;serviceDiscoveryMode=zookeeper;zookeeperNamespace=hiveserver2
